@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import CoverScreen from "./screens/Coverscreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import SearchWeather from "./screens/Searchweather";
 
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="CoverScreen"
+          component={CoverScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SearchWeather"
+          component={SearchWeather}
+          options={{
+            title: "Choose a city",
+            headerTitleAlign: "center",
+            headerTintColor: "white",
+            headerShadowVisible: false,
+            headerTransparent: true,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
